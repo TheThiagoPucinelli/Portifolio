@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thiago Pucinelli | Portfólio Front-End</title>
+
+<!-- Favicon bolinha roxa (sem usar imagem) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><circle cx='32' cy='32' r='28' fill='%239f50ff'/></svg>">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+
+  <!-- AOS for scroll animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background-color: #0a0a0a; color: #fff; }
+
+    /* Typing effect */
+    .typing {
+      border-right: 2px solid #9f50ff;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 2s steps(20) forwards, blink 0.75s step-end infinite;
+    }
+    @keyframes typing { to { width: 12ch; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+
+    /* Fundo animado */
+    canvas#bgCanvas {
+      position: fixed;
+      top:0; left:0;
+      width:100%;
+      height:100%;
+      z-index:-1;
+    }
+
+    /* Cards estilo Manhwa */
+    .manhwa-card {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      border-radius: 15px;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .manhwa-card:hover {
+      transform: scale(1.05) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 0 20px #9f50ff, 0 0 40px #ff5cf3;
+    }
+
+    /* Skills bars */
+    .skill-bar {
+      background: #1a1a1a;
+      border-radius: 9999px;
+      overflow: hidden;
+      height: 12px;
+      margin-top: 4px;
+    }
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #9f50ff, #ff5cf3);
+      transition: width 1s ease;
+    }
+
+  </style>
+</head>
+
+<body class="relative overflow-x-hidden">
+
+  <!-- Fundo animado -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- HEADER -->
+  <header class="fixed top-0 w-full bg-black/70 backdrop-blur-md z-50 border-b border-gray-800">
+    <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+     <a href="#home" class="text-xl font-bold hover:text-purple-400 transition cursor-pointer">Thiago Pucinelli</a>
+      <nav class="hidden md:flex gap-6">
+        <a href="#home" class="hover:text-purple-400 transition">Home</a>
+        <a href="#sobre" class="hover:text-purple-400 transition">Sobre</a>
+        <a href="#skills" class="hover:text-purple-400 transition">Skills</a>
+        <a href="#projetos" class="hover:text-purple-400 transition">Projetos</a>
+        <a href="#servicos" class="hover:text-purple-400 transition">Serviços</a>
+        <a href="#certificacoes" class="hover:text-purple-400 transition">Certificações</a>
+        <a href="#depoimentos" class="hover:text-purple-400 transition">Depoimentos</a>
+        <a href="#contato" class="hover:text-purple-400 transition">Contato</a>
+      </nav>
+      <button id="menuBtn" class="md:hidden text-3xl hover:text-purple-400 transition"><i class="ri-menu-3-line"></i></button>
+    </div>
+
+    <div id="mobileNav" class="hidden md:hidden flex-col text-center bg-black/80 p-4 gap-4">
+      <a onclick="closeMenu()" href="#home" class="block py-2 hover:text-purple-400">Home</a>
+      <a onclick="closeMenu()" href="#sobre" class="block py-2 hover:text-purple-400">Sobre</a>
+      <a onclick="closeMenu()" href="#skills" class="block py-2 hover:text-purple-400">Skills</a>
+      <a onclick="closeMenu()" href="#projetos" class="block py-2 hover:text-purple-400">Projetos</a>
+      <a onclick="closeMenu()" href="#servicos" class="block py-2 hover:text-purple-400">Serviços</a>
+      <a onclick="closeMenu()" href="#certificacoes" class="block py-2 hover:text-purple-400">Certificações</a>
+      <a onclick="closeMenu()" href="#depoimentos" class="block py-2 hover:text-purple-400">Depoimentos</a>
+      <a onclick="closeMenu()" href="#contato" class="block py-2 hover:text-purple-400">Contato</a>
+    </div>
+  </header>
+
+  <!-- HOME -->
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-32" data-aos="fade-up">
+    <img src="/foto.jpeg" alt="Thiago Pucinelli" class="w-44 h-44 rounded-full object-cover border-4 border-purple-800 shadow-lg mb-6 transition-transform hover:scale-110">
+    <h2 class="text-5xl font-extrabold mb-4">Thiago Pucinelli</h2>
+    <p class="text-lg text-purple-300">Desenvolvedor <span class="typing">Front-End</span></p>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="min-h-screen flex justify-center items-center px-4 bg-black/80 py-24" data-aos="fade-right">
+    <div class="max-w-3xl text-center">
+      <h3 class="text-4xl font-bold mb-6 text-purple-400">Sobre mim</h3>
+      <p class="text-gray-300 text-lg leading-relaxed">
+        Sou Thiago Pucinelli, desenvolvedor Front-End apaixonado por criar interfaces modernas e interativas. 
+        Desde 2020 venho estudando tecnologias web modernas — HTML, CSS, JavaScript, Tailwind e React. 
+        Tenho experiência em projetos com foco em UI/UX, animações, interatividade e desenvolvimento Web.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="min-h-screen flex justify-center items-center px-4 py-24 bg-gray-900" data-aos="fade-left">
+    <div class="max-w-4xl w-full">
+      <h3 class="text-4xl font-bold mb-12 text-purple-400 text-center">Skills</h3>
+      <div class="space-y-6">
+
+        <div><h4 class="text-lg font-semibold">HTML</h4><div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div></div>
+        <div><h4 class="text-lg font-semibold">CSS / Tailwind</h4><div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div></div>
+        <div><h4 class="text-lg font-semibold">JavaScript</h4><div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div></div>
+        <div><h4 class="text-lg font-semibold">Node.js</h4><div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div></div>
+        <div><h4 class="text-lg font-semibold">PHP</h4><div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div></div>
+        <div><h4 class="text-lg font-semibold">Python</h4><div class="skill-bar"><div class="skill-progress" style="width:65%"></div></div></div>
+        <div><h4 class="text-lg font-semibold">SQL</h4><div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div></div>
+        <div><h4 class="text-lg font-semibold">UI/UX / Figma</h4><div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETOS  -->
+  <section id="projetos" class="min-h-screen px-4 py-24 bg-black/80" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-4xl font-bold text-purple-400 mb-12 text-center">Projetos</h3>
+
+      <!-- LINHA CORRIGIDA -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 justify-center">
+
+        <div class="manhwa-card p-6">
+          <h4 class="text-2xl font-bold text-purple-400 mb-2">Sistema Chave Mestra</h4>
+          <p class="text-gray-300 mb-4">
+            Sistema de controle e monitoramento do uso de chaves físicas do IFSUL CAVG.
+          </p>
+          <a href="https://github.com/TheThiagoPucinelli/Chave-Mestra" target="_blank"
+             class="block text-center bg-purple-600 hover:bg-purple-700 py-2 rounded-lg font-semibold">
+             Ver Projeto
+          </a>
+        </div>
+
+        <!-- CARD EM BREVE -->
+        <div class="manhwa-card p-6">
+          <h4 class="text-2xl font-bold text-purple-400 mb-2">Mais Projetos em Breve</h4>
+          <p class="text-gray-300 mb-4">
+            Novas aplicações e sistemas serão adicionados conforme forem publicados.
+          </p>
+          <div class="px-6 py-2 bg-gray-700/50 rounded-lg text-gray-400 font-bold text-center">
+            Em breve
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="min-h-screen px-4 py-24 bg-gray-900" data-aos="fade-left">
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-4xl font-bold text-purple-400 mb-12 text-center">Serviços</h3>
+      <div class="grid md:grid-cols-3 gap-6 text-center">
+        <div class="manhwa-card p-6"><i class="ri-code-line text-4xl text-purple-400 mb-4"></i><h4 class="text-xl font-bold mb-2">Front-End</h4><p class="text-gray-300">HTML, CSS, Tailwind, JavaScript e UI/UX.</p></div>
+        <div class="manhwa-card p-6"><i class="ri-server-line text-4xl text-purple-400 mb-4"></i><h4 class="text-xl font-bold mb-2">Back-End</h4><p class="text-gray-300">Node.js, PHP, Python, SQL, APIs REST.</p></div>
+        <div class="manhwa-card p-6"><i class="ri-brush-4-line text-4xl text-purple-400 mb-4"></i><h4 class="text-xl font-bold mb-2">UI/UX Design</h4><p class="text-gray-300">Prototipação, design moderno, intuitivo e interativo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICAÇÕES -->
+  <section id="certificacoes" class="min-h-screen px-4 py-24 bg-black/80" data-aos="fade-right">
+    <div class="max-w-4xl mx-auto text-center">
+      <h3 class="text-4xl font-bold text-purple-400 mb-12">Certificações</h3>
+      <ul class="space-y-4 text-gray-300 text-lg">
+        <li>🎓 Técnico em Desenvolvimento de Sistemas — IFSUL</li>
+        <li>🎓 Desenvolvedor de Sistemas Proem + Tech — Senac RS</li>
+        
+      </ul>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section id="depoimentos" class="min-h-screen px-4 py-24 bg-gray-900" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto text-center">
+      <h3 class="text-4xl font-bold text-purple-400 mb-12">Depoimentos</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="manhwa-card p-6">
+          <p class="text-gray-300 italic">"Thiago é um desenvolvedor excepcional. Sempre entrega projetos de forma organizada."</p>
+          <h5 class="mt-4 font-bold text-purple-400">João Silva</h5>
+        </div>
+        <div class="manhwa-card p-6">
+          <p class="text-gray-300 italic">"Excelente senso estético e habilidades técnicas."</p>
+          <h5 class="mt-4 font-bold text-purple-400">Maria Oliveira</h5>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato" class="min-h-screen px-4 py-24 bg-black/80" data-aos="fade-left">
+    <div class="max-w-3xl mx-auto text-center">
+      <h3 class="text-4xl font-bold mb-4 text-purple-400">Contato</h3>
+      <p class="text-gray-300 mb-6">Quer conversar sobre projetos ou oportunidades?</p>
+      <a href="mailto:thiagopucinelli@gmail.com" class="px-8 py-3 bg-purple-600 rounded-lg hover:bg-pink-500 transition font-bold">Enviar Email</a>
+      <div class="flex justify-center gap-6 mt-6">
+        <a href="https://github.com/TheThiagoPucinelli" target="_blank" class="text-3xl hover:text-pink-500 transition"><i class="ri-github-fill"></i></a>
+        <a href="https://linkedin.com/in/thiagopucinelli" target="_blank" class="text-3xl hover:text-pink-500 transition"><i class="ri-linkedin-box-fill"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 text-center text-gray-500">
+    © 2025 | Desenvolvido por Thiago Pucinelli
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    // Menu mobile
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileNav = document.getElementById("mobileNav");
+    menuBtn.addEventListener("click", () => { mobileNav.classList.toggle("hidden"); });
+    function closeMenu(){ mobileNav.classList.add("hidden"); }
+
+    // Fundo partículas animadas
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+    const colors = ['#9f50ff','#ff5cf3','white','blue'];
+
+    function initCanvas(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particlesArray = [];
+      for(let i=0;i<120;i++){
+        particlesArray.push({
+          x: Math.random()*canvas.width,
+          y: Math.random()*canvas.height,
+          size: Math.random()*2+1,
+          speedX: (Math.random()-0.5)*1.5,
+          speedY: (Math.random()-0.5)*1.5,
+          color: colors[Math.floor(Math.random()*colors.length)]
+        });
+      }
+    }
+
+    function animate(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particlesArray.forEach(p => {
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+        ctx.fill();
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if(p.x<0)p.x=canvas.width;
+        if(p.x>canvas.width)p.x=0;
+        if(p.y<0)p.y=canvas.height;
+        if(p.y>canvas.height)p.y=0;
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', initCanvas);
+    initCanvas();
+    animate();
+  </script>
+</body>
+</html>
