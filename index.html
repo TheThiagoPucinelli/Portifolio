@@ -18,6 +18,9 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
+    /* ================================================== */
+    /* ESTILOS GLOBAIS E CONFIGURAÇÕES RESPONSIVAS         */
+    /* ================================================== */
     
     * {
       margin: 0;
@@ -79,6 +82,7 @@
       pointer-events: none;
     }
     
+    /* Animações e aparência do menu mobile */
     #mobileNav {
       transition: all 0.3s ease;
     }
@@ -105,6 +109,7 @@
     #mobileNav .mobile-item:nth-child(7) { animation-delay: 0.7s; }
     #mobileNav .mobile-item:nth-child(8) { animation-delay: 0.8s; }
 
+    /* Cards dos projetos */
     .manhwa-card {
       background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
       border-radius: 15px;
@@ -116,6 +121,7 @@
       box-shadow: 0 0 20px #007BFF, 0 0 40px #00BFFF;
     }
 
+    /* Barras de progresso de habilidades (se utilizadas) */
     .skill-bar {
       background: #1a1a1a;
       border-radius: 9999px;
@@ -144,6 +150,7 @@
       transition: transform 0.2s ease;
     }
 
+    /* Cards da seção de certificações */
     .cert-card {
       background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
       border-radius: 20px;
@@ -201,6 +208,7 @@
       box-shadow: 0 5px 15px #007BFF40;
     }
 
+    /* Animações decorativas e efeito de texto digitado */
     @keyframes ping-slow {
       75%, 100% {
         transform: scale(1.5);
@@ -240,9 +248,30 @@
 
 <body class="relative">
 
+  <!--
+    MAPA DO SITE
+    1. Cabeçalho e navegação
+    2. Home / apresentação
+    3. Sobre mim
+    4. Skills / tecnologias
+    5. Projetos
+    6. Serviços
+    7. Certificações
+    8. Eventos
+    9. Contato
+    10. Rodapé
+    11. JavaScript: AOS, menu mobile, habilidades e partículas
+  -->
+
+  <!-- ================================================== -->
+  <!-- FUNDO ANIMADO DO SITE                              -->
+  <!-- ================================================== -->
   <canvas id="bgCanvas"></canvas>
   <div class="gradient-overlay"></div>
 
+  <!-- ================================================== -->
+  <!-- CABEÇALHO, NAVEGAÇÃO DESKTOP E MENU MOBILE         -->
+  <!-- ================================================== -->
   <header class="fixed top-0 w-full bg-black/70 backdrop-blur-md z-50 border-b border-gray-800">
     <div class="container-padrao flex justify-between items-center p-4">
      <a href="#home" class="text-xl font-bold hover:text-blue-400 transition cursor-pointer">Thiago Pucinelli</a>
@@ -271,155 +300,431 @@
     </div>
   </header>
 
-  <section id="home" class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-32 overflow-hidden" data-aos="fade-up">
-    
-    <div class="absolute inset-0 w-full h-full pointer-events-none">
-      <div class="absolute top-20 left-10 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
-      <div class="absolute bottom-20 right-10 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
-      <div class="absolute inset-0 bg-[linear-gradient(rgba(0,123,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,123,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px]"></div>
-    </div>
-    
-    <div class="relative z-10 max-w-4xl mx-auto">
-      
-      <div class="relative mb-8 group">
-        <div class="relative w-48 h-48 mx-auto">
-          <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 blur-md opacity-70"></div>
-          <img src="/foto.jpeg" alt="Thiago Pucinelli" 
-               class="relative w-full h-full rounded-full object-cover border-4 border-black/50 shadow-2xl transition-transform duration-500 group-hover:scale-105">
-        </div>
-        
-        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-md text-blue-400 px-4 py-2 rounded-full text-sm border border-blue-500/30 shadow-xl flex items-center gap-2">
-          <i class="ri-map-pin-2-fill text-blue-400"></i>
-          <span>Pelotas, RS</span>
-        </div>
-      </div>
-      
-      <h1 class="text-6xl md:text-7xl font-extrabold mb-4">
-        <span class="bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent">
-          Thiago Pucinelli
+  
+<section id="home"
+class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-32 pb-24 overflow-hidden bg-gray-950"
+data-aos="fade-up">
+
+<!-- Fundo decorativo -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden">
+  <div class="absolute -top-20 left-[-5rem] w-80 h-80 bg-blue-600/10 rounded-full blur-[120px]"></div>
+  <div class="absolute top-1/3 right-[-6rem] w-96 h-96 bg-cyan-500/10 rounded-full blur-[140px]"></div>
+  <div class="absolute bottom-0 left-1/3 w-72 h-72 bg-blue-700/10 rounded-full blur-[120px]"></div>
+
+  <div class="absolute inset-0 opacity-40"
+    style="background-image: linear-gradient(rgba(59,130,246,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.035) 1px, transparent 1px); background-size: 55px 55px;">
+  </div>
+
+  <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-gray-900 to-transparent"></div>
+</div>
+
+<!-- Conteúdo principal -->
+<div class="relative z-10 w-full max-w-5xl mx-auto">
+
+  <!-- Foto de perfil -->
+  <div class="relative w-44 h-44 md:w-48 md:h-48 mx-auto mb-9 group">
+
+    <div class="absolute -inset-2 rounded-full border border-blue-500/20 group-hover:border-blue-400/50 transition-colors duration-500"></div>
+
+    <div class="absolute -inset-1 rounded-full bg-gradient-to-br from-blue-600 via-cyan-400 to-blue-800 opacity-80 blur-md group-hover:opacity-100 transition-opacity duration-500"></div>
+
+    <img src="/foto.jpeg"
+      alt="Foto de perfil de Thiago Pucinelli"
+      fetchpriority="high"
+      class="relative w-full h-full rounded-full object-cover border-4 border-gray-950 shadow-2xl transition-transform duration-500 group-hover:scale-[1.03]">
+
+    <!-- Localização -->
+    <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-900/95 backdrop-blur-xl border border-blue-500/30 text-gray-200 text-sm shadow-xl">
+        <span class="relative flex w-2 h-2">
+          <span class="absolute inline-flex w-full h-full rounded-full bg-blue-400 opacity-60 animate-ping"></span>
+          <span class="relative inline-flex w-2 h-2 rounded-full bg-blue-400"></span>
         </span>
-      </h1>
-      
-      <div class="relative inline-block mb-6">
-        <p class="text-xl md:text-2xl text-gray-300 flex items-center flex-wrap justify-center">
-          <span class="text-blue-400 font-semibold">&lt;</span>
-          <span class="mx-1">Desenvolvedor</span>
-          <span class="relative inline-flex items-center mx-1">
-            <span class="typing text-blue-400 font-bold">Front-End</span>
-            <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-transparent"></span>
-          </span>
-          <span class="text-blue-400 font-semibold ml-1">/&gt;</span>
-        </p>
-      </div>
-      
-      <p class="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">
-        Criando experiências digitais interativas com foco no Front com design moderno
-      </p>
-      
-      <div class="flex flex-wrap justify-center gap-4 mb-12">
-        
-        <a href="#projetos" 
-           class="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full font-semibold text-white overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300">
-          <span class="relative z-10 flex items-center gap-2">
-            <i class="ri-code-s-slash-line"></i>
-            Ver Projetos
-            <i class="ri-arrow-right-line group-hover:translate-x-1 transition-transform"></i>
-          </span>
-          <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </a>
-        
-        <a href="#contato" 
-           class="px-8 py-4 bg-transparent border-2 border-blue-500/30 hover:border-blue-500 rounded-full font-semibold text-white hover:text-blue-400 transition-all duration-300 flex items-center gap-2 hover:shadow-lg hover:shadow-blue-500/20">
-          <i class="ri-chat-1-line"></i>
-          Entrar em Contato
-        </a>
-
-        <a href="/curriculo.pdf" target="_blank"
-           class="px-8 py-4 bg-gray-900 border-2 border-blue-500/30 hover:border-blue-500 rounded-full font-semibold text-white hover:text-blue-400 transition-all duration-300 flex items-center gap-2 hover:shadow-lg hover:shadow-blue-500/20">
-          <i class="ri-file-download-line"></i>
-          Ver Currículo
-        </a>
-
-      </div>
-      
-      <div class="flex justify-center gap-4">
-        <a href="https://github.com/TheThiagoPucinelli" target="_blank" 
-           class="w-12 h-12 rounded-full bg-gray-900/80 backdrop-blur-sm border border-gray-800 hover:border-blue-500 flex items-center justify-center text-2xl text-gray-400 hover:text-blue-400 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300">
-          <i class="ri-github-fill"></i>
-        </a>
-
-        <a href="https://linkedin.com/in/thiagopucinelli" target="_blank" 
-           class="w-12 h-12 rounded-full bg-gray-900/80 backdrop-blur-sm border border-gray-800 hover:border-blue-500 flex items-center justify-center text-2xl text-gray-400 hover:text-blue-400 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300">
-          <i class="ri-linkedin-fill"></i>
-        </a>
-
-        <a href="mailto:thiagopucinelli@gmail.com" 
-           class="w-12 h-12 rounded-full bg-gray-900/80 backdrop-blur-sm border border-gray-800 hover:border-blue-500 flex items-center justify-center text-2xl text-gray-400 hover:text-blue-400 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300">
-          <i class="ri-mail-fill"></i>
-        </a>
-      </div>
+        Pelotas, RS
+      </span>
     </div>
-<br><br>
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500">
-        <span class="text-sm">Role para me conhecer mais.</span>
-        <div class="w-6 h-10 border-2 border-gray-700 rounded-full flex justify-center">
-          <div class="w-1 h-2 bg-blue-500 rounded-full mt-2 animate-bounce"></div>
-        </div>
-      </div>
+  </div>
+
+  <!-- Apresentação -->
+  <div class="mb-8">
+    <p class="text-blue-400 text-sm md:text-base font-semibold tracking-[0.25em] uppercase mb-4">
+      Olá, eu sou
+    </p>
+
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-5">
+      <span class="bg-gradient-to-r from-white via-blue-100 to-blue-400 bg-clip-text text-transparent">
+        Thiago Pucinelli
+      </span>
+    </h1>
+
+    <div class="flex flex-wrap justify-center items-center gap-x-2 gap-y-2 text-xl sm:text-2xl md:text-3xl font-medium mb-6">
+      <span class="text-gray-400">Desenvolvedor</span>
+      <span class="text-blue-400 font-bold">Front-end</span>
+      <span class="text-blue-500">&lt;/&gt;</span>
+    </div>
+
+    <p class="max-w-2xl mx-auto text-gray-400 text-base md:text-lg leading-relaxed px-2">
+      Transformando ideias em interfaces intuitivas e modernas.
+      Desenvolvo projetos web unindo <span class="text-gray-200">tecnologia, criatividade e experiência do usuário.</span>
+    </p>
+  </div>
+
+  <!-- Tecnologias em destaque -->
+  <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
+    <span class="px-3 py-1.5 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 text-xs sm:text-sm">
+      <i class="ri-html5-fill text-orange-400 mr-1"></i> HTML
+    </span>
+
+    <span class="px-3 py-1.5 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 text-xs sm:text-sm">
+      <i class="ri-css3-fill text-blue-400 mr-1"></i> CSS
+    </span>
+
+    <span class="px-3 py-1.5 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 text-xs sm:text-sm">
+      <i class="ri-javascript-fill text-yellow-400 mr-1"></i> JavaScript
+    </span>
+
+    <span class="px-3 py-1.5 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 text-xs sm:text-sm">
+      <i class="ri-reactjs-line text-cyan-400 mr-1"></i> React
+    </span>
+
+    <span class="px-3 py-1.5 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 text-xs sm:text-sm">
+      <i class="ri-wind-line text-cyan-300 mr-1"></i> Tailwind CSS
+    </span>
+  </div>
+
+  <!-- Botões principais -->
+  <div class="flex flex-col sm:flex-row flex-wrap justify-center items-stretch sm:items-center gap-3 sm:gap-4 mb-10">
+
+    <a href="#projetos"
+      class="group inline-flex items-center justify-center gap-3 px-7 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg shadow-blue-600/20 hover:shadow-blue-500/30 hover:-translate-y-1 transition-all duration-300">
+      <i class="ri-code-s-slash-line text-xl"></i>
+      Ver meus projetos
+      <i class="ri-arrow-right-line transition-transform duration-300 group-hover:translate-x-1"></i>
+    </a>
+
+    <a href="#contato"
+      class="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-xl bg-gray-900/80 border border-gray-700 hover:border-blue-500/70 hover:bg-blue-500/5 text-gray-200 hover:text-blue-300 font-semibold transition-all duration-300 hover:-translate-y-1">
+      <i class="ri-chat-3-line text-xl"></i>
+      Entrar em contato
+    </a>
+
+    <a href="/curriculo.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-xl bg-transparent border border-gray-800 hover:border-gray-600 text-gray-400 hover:text-white font-semibold transition-all duration-300">
+      <i class="ri-file-text-line text-xl"></i>
+      Ver currículo
+      <i class="ri-external-link-line text-sm"></i>
+    </a>
+
+  </div>
+
+  <!-- Redes sociais -->
+  <div class="flex flex-col items-center gap-4">
+    <p class="text-xs uppercase tracking-[0.2em] text-gray-600 font-semibold">
+      Vamos nos conectar
+    </p>
+
+    <div class="flex justify-center gap-3">
+
+      <a href="https://github.com/TheThiagoPucinelli"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub de Thiago Pucinelli"
+        class="w-12 h-12 rounded-xl bg-gray-900/80 border border-gray-800 hover:border-blue-500/60 hover:bg-blue-500/10 flex items-center justify-center text-xl text-gray-400 hover:text-blue-400 hover:-translate-y-1 transition-all duration-300">
+        <i class="ri-github-fill"></i>
+      </a>
+
+      <a href="https://linkedin.com/in/thiagopucinelli"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn de Thiago Pucinelli"
+        class="w-12 h-12 rounded-xl bg-gray-900/80 border border-gray-800 hover:border-blue-500/60 hover:bg-blue-500/10 flex items-center justify-center text-xl text-gray-400 hover:text-blue-400 hover:-translate-y-1 transition-all duration-300">
+        <i class="ri-linkedin-fill"></i>
+      </a>
+
+      <a href="mailto:thiago.pucinelli.177@gmail.com"
+        aria-label="Enviar e-mail para Thiago Pucinelli"
+        class="w-12 h-12 rounded-xl bg-gray-900/80 border border-gray-800 hover:border-blue-500/60 hover:bg-blue-500/10 flex items-center justify-center text-xl text-gray-400 hover:text-blue-400 hover:-translate-y-1 transition-all duration-300">
+        <i class="ri-mail-fill"></i>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Indicador de rolagem -->
+<a href="#sobre"
+  class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-gray-500 hover:text-blue-400 transition-colors duration-300"
+  aria-label="Rolar para a seção Sobre">
+
+  <span class="text-xs tracking-wider">Explore meu portfólio</span>
+
+  <div class="w-6 h-10 rounded-full border border-gray-700 flex justify-center pt-2">
+    <span class="w-1 h-2 rounded-full bg-blue-400 animate-bounce"></span>
+  </div>
+</a>
+
 </section>
-        </a>
-      </div>
 
-      <br><br><br><br><br><br>
+  <!-- ================================================== -->
+  <!-- SEÇÃO 2: SOBRE MIM                                 -->
+  <!-- ================================================== -->
+  
+<section id="sobre" class="min-h-screen flex justify-center items-center px-4 bg-black/80 py-24" data-aos="fade-right">
+  <div class="max-w-3xl text-center">
+    <h3 class="text-4xl font-bold mb-6 text-blue-500">Sobre mim</h3>
 
-      
-      
-    </div>
-  </section>
+    <p class="text-gray-300 text-lg leading-relaxed">
+      Sou estudante de Tecnologia em Sistemas para Internet, apaixonado por tecnologia e pelo desenvolvimento de soluções digitais. Tenho foco em Front-end e busco aprimorar minhas habilidades constantemente por meio dos estudos, cursos e projetos pessoais, transformando ideias em interfaces modernas, funcionais e intuitivas.
 
-  <section id="sobre" class="min-h-screen flex justify-center items-center px-4 bg-black/80 py-24" data-aos="fade-right">
-    <div class="max-w-3xl text-center">
-      <h3 class="text-4xl font-bold mb-6 text-blue-500">Sobre mim</h3>
-      <p class="text-gray-300 text-lg leading-relaxed">
-       Sou estudante da área de Tecnologia da Informação, com grande interesse em aprender e evoluir constantemente. Mesmo no início da minha trajetória profissional, busco desenvolver meus conhecimentos por meio de estudos e projetos pessoais, principalmente focados em Front-end.
+      <br><br>
 
-Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam e estou sempre aberto a novos desafios e oportunidades de aprendizado.
+      Sou curioso, dedicado e gosto de entender como as coisas funcionam, sempre buscando aprender novas tecnologias e superar desafios. Estou no início da minha trajetória profissional e procuro oportunidades para colocar meus conhecimentos em prática, colaborar com equipes e continuar evoluindo como desenvolvedor.
+    </p>
+  </div>
+</section>
+
+
+  
+<!-- ================================================== -->
+<!-- SEÇÃO 3: SKILLS / TECNOLOGIAS E FERRAMENTAS         -->
+<!-- ================================================== -->
+<section id="skills" class="relative min-h-screen px-4 py-24 bg-gray-900 overflow-hidden" data-aos="fade-left">
+
+  <!-- Efeitos de fundo -->
+  <div class="absolute top-20 left-0 w-72 h-72 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="absolute bottom-10 right-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+  <div class="container-padrao relative z-10">
+
+    <!-- Cabeçalho -->
+    <div class="text-center mb-16">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium mb-5">
+        <i class="ri-code-s-slash-line"></i>
+        Tecnologias e ferramentas
+      </span>
+
+      <h3 class="text-4xl md:text-5xl font-bold text-white mb-5">
+        Minhas <span class="text-blue-500">Skills</span>
+      </h3>
+
+      <p class="text-gray-400 max-w-2xl mx-auto leading-relaxed">
+        Tecnologias e ferramentas que utilizo nos meus estudos e projetos,
+        sempre buscando evoluir e desenvolver soluções melhores.
       </p>
     </div>
-  </section>
 
-  <section id="skills" class="min-h-screen flex justify-center items-center px-4 py-24 bg-gray-900" data-aos="fade-left">
-    <div class="container-padrao">
-      <h3 class="text-4xl font-bold mb-12 text-blue-500 text-center">Skills</h3>
-      <div class="max-w-4xl mx-auto space-y-6">
-        <div>
-          <h4 class="text-lg font-semibold">HTML</h4>
-          <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+    <!-- Desenvolvimento Front-end -->
+    <div class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+          <i class="ri-layout-4-line text-blue-400 text-xl"></i>
         </div>
+
         <div>
-          <h4 class="text-lg font-semibold">CSS / Tailwind</h4>
-          <div class="skill-bar"><div class="skill-progress" data-width="87"></div></div>
-        </div>
-        <div>
-          <h4 class="text-lg font-semibold">JavaScript</h4>
-          <div class="skill-bar"><div class="skill-progress" data-width="81"></div></div>
-        </div>
-        <div>
-          <h4 class="text-lg font-semibold">PHP</h4>
-          <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
-        </div>
-        <div>
-          <h4 class="text-lg font-semibold">Python</h4>
-          <div class="skill-bar"><div class="skill-progress" data-width="65"></div></div>
-        </div>
-        <div>
-          <h4 class="text-lg font-semibold">SQL</h4>
-          <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+          <h4 class="text-xl font-bold text-white">Front-end</h4>
+          <p class="text-sm text-gray-500">Estrutura, estilo e interatividade</p>
         </div>
       </div>
-    </div>
-  </section>
 
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- HTML -->
+        <div class="group p-6 rounded-2xl bg-gray-800/70 border border-gray-700/70 hover:border-orange-400/60 hover:bg-gray-800 transition-all duration-300 hover:-translate-y-1">
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center">
+              <i class="ri-html5-fill text-3xl text-orange-400"></i>
+            </div>
+            <i class="ri-arrow-up-right-line text-xl text-gray-600 group-hover:text-orange-400 transition-colors"></i>
+          </div>
+          <h5 class="text-lg font-bold text-white mb-2">HTML5</h5>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Estruturação semântica e organização do conteúdo de páginas web.
+          </p>
+          <div class="mt-5 flex items-center gap-2 text-xs text-gray-500">
+            <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+            Desenvolvimento web
+          </div>
+        </div>
+
+        <!-- CSS -->
+        <div class="group p-6 rounded-2xl bg-gray-800/70 border border-gray-700/70 hover:border-blue-400/60 hover:bg-gray-800 transition-all duration-300 hover:-translate-y-1">
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
+              <i class="ri-css3-fill text-3xl text-blue-400"></i>
+            </div>
+            <i class="ri-arrow-up-right-line text-xl text-gray-600 group-hover:text-blue-400 transition-colors"></i>
+          </div>
+          <h5 class="text-lg font-bold text-white mb-2">CSS3 & Tailwind CSS</h5>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Estilização, layouts responsivos e criação de interfaces modernas.
+          </p>
+          <div class="mt-5 flex items-center gap-2 text-xs text-gray-500">
+            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+            UI e responsividade
+          </div>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="group p-6 rounded-2xl bg-gray-800/70 border border-gray-700/70 hover:border-yellow-400/60 hover:bg-gray-800 transition-all duration-300 hover:-translate-y-1">
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center">
+              <i class="ri-javascript-fill text-3xl text-yellow-400"></i>
+            </div>
+            <i class="ri-arrow-up-right-line text-xl text-gray-600 group-hover:text-yellow-400 transition-colors"></i>
+          </div>
+          <h5 class="text-lg font-bold text-white mb-2">JavaScript</h5>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Lógica de programação, manipulação do DOM e interatividade.
+          </p>
+          <div class="mt-5 flex items-center gap-2 text-xs text-gray-500">
+            <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+            Programação web
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Back-end e Banco de Dados -->
+    <div class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
+          <i class="ri-server-line text-cyan-400 text-xl"></i>
+        </div>
+
+        <div>
+          <h4 class="text-xl font-bold text-white">Back-end & Dados</h4>
+          <p class="text-sm text-gray-500">Lógica, processamento e persistência</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- PHP -->
+        <div class="group p-6 rounded-2xl bg-gray-800/70 border border-gray-700/70 hover:border-purple-400/60 hover:bg-gray-800 transition-all duration-300 hover:-translate-y-1">
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center">
+              <i class="ri-code-s-slash-line text-3xl text-purple-400"></i>
+            </div>
+            <i class="ri-arrow-up-right-line text-xl text-gray-600 group-hover:text-purple-400 transition-colors"></i>
+          </div>
+          <h5 class="text-lg font-bold text-white mb-2">PHP</h5>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Desenvolvimento de funcionalidades e sistemas web no servidor.
+          </p>
+          <div class="mt-5 flex items-center gap-2 text-xs text-gray-500">
+            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+            Desenvolvimento back-end
+          </div>
+        </div>
+
+        <!-- Python -->
+        <div class="group p-6 rounded-2xl bg-gray-800/70 border border-gray-700/70 hover:border-yellow-400/60 hover:bg-gray-800 transition-all duration-300 hover:-translate-y-1">
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center">
+              <i class="ri-terminal-box-line text-3xl text-yellow-400"></i>
+            </div>
+            <i class="ri-arrow-up-right-line text-xl text-gray-600 group-hover:text-yellow-400 transition-colors"></i>
+          </div>
+          <h5 class="text-lg font-bold text-white mb-2">Python</h5>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Lógica de programação, scripts e desenvolvimento de aplicações.
+          </p>
+          <div class="mt-5 flex items-center gap-2 text-xs text-gray-500">
+            <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+            Programação
+          </div>
+        </div>
+
+        <!-- SQL -->
+        <div class="group p-6 rounded-2xl bg-gray-800/70 border border-gray-700/70 hover:border-sky-400/60 hover:bg-gray-800 transition-all duration-300 hover:-translate-y-1">
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center justify-center">
+              <i class="ri-database-2-fill text-3xl text-sky-400"></i>
+            </div>
+            <i class="ri-arrow-up-right-line text-xl text-gray-600 group-hover:text-sky-400 transition-colors"></i>
+          </div>
+          <h5 class="text-lg font-bold text-white mb-2">SQL & MySQL</h5>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Consultas SQL, organização de tabelas e gerenciamento de dados.
+          </p>
+          <div class="mt-5 flex items-center gap-2 text-xs text-gray-500">
+            <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+            Banco de dados
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Conhecimentos complementares -->
+    <div>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+          <i class="ri-tools-line text-indigo-400 text-xl"></i>
+        </div>
+
+        <div>
+          <h4 class="text-xl font-bold text-white">Outros conhecimentos</h4>
+          <p class="text-sm text-gray-500">Ferramentas e fundamentos técnicos</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+
+        <div class="flex items-center gap-3 p-4 rounded-xl bg-gray-800/60 border border-gray-700/60 hover:border-blue-500/50 transition-colors">
+          <i class="ri-git-branch-line text-2xl text-orange-400"></i>
+          <div>
+            <h5 class="text-sm font-semibold text-white">Git</h5>
+            <p class="text-xs text-gray-500">Versionamento</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 p-4 rounded-xl bg-gray-800/60 border border-gray-700/60 hover:border-blue-500/50 transition-colors">
+          <i class="ri-github-fill text-2xl text-white"></i>
+          <div>
+            <h5 class="text-sm font-semibold text-white">GitHub</h5>
+            <p class="text-xs text-gray-500">Repositórios</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 p-4 rounded-xl bg-gray-800/60 border border-gray-700/60 hover:border-blue-500/50 transition-colors">
+          <i class="ri-terminal-line text-2xl text-green-400"></i>
+          <div>
+            <h5 class="text-sm font-semibold text-white">Lógica</h5>
+            <p class="text-xs text-gray-500">Algoritmos</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 p-4 rounded-xl bg-gray-800/60 border border-gray-700/60 hover:border-blue-500/50 transition-colors">
+          <i class="ri-computer-line text-2xl text-cyan-400"></i>
+          <div>
+            <h5 class="text-sm font-semibold text-white">Informática</h5>
+            <p class="text-xs text-gray-500">Hardware e software</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="mt-12 text-center">
+      <p class="text-sm text-gray-500">
+        <i class="ri-refresh-line text-blue-400 mr-1"></i>
+        Sempre aprendendo, praticando e evoluindo.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- ================================================== -->
+  <!-- SEÇÃO 4: PROJETOS                                  -->
+  <!-- ================================================== -->
   <section id="projetos" class="min-h-screen px-4 py-24 bg-black/80" data-aos="fade-up">
     <div class="container-padrao">
       <div class="text-center mb-12">
@@ -430,6 +735,10 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         
+        <!-- Projeto: Sistema Chave Mestra -->
+        <!-- Projeto: Keybinds App -->
+        <!-- Projeto: Hello World Club -->
+        <!-- Projeto: Player N1º -->
         <div class="manhwa-card p-6 relative overflow-hidden group flex flex-col h-full">
           <div class="absolute top-4 right-4 z-10">
             <span class="bg-blue-600/90 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm border border-blue-400/30">
@@ -704,29 +1013,206 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
     </div>
   </section>
 
-  <section id="servicos" class="min-h-screen px-4 py-24 bg-gray-900 flex items-center" data-aos="fade-left">
-    <div class="container-padrao">
-      <h3 class="text-4xl font-bold text-blue-500 mb-12 text-center">Serviços</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        <div class="manhwa-card p-6">
-          <i class="ri-code-line text-4xl text-blue-400 mb-4 block"></i>
-          <h4 class="text-xl font-bold mb-2">Front-End</h4>
-          <p class="text-gray-300">HTML, CSS, TailwindCSS</p>
+  
+<!-- ================================================== -->
+<!-- SEÇÃO 5: SERVIÇOS                                   -->
+<!-- ================================================== -->
+<section id="servicos"
+class="relative min-h-screen px-4 py-24 bg-gray-900 overflow-hidden"
+data-aos="fade-left">
+
+<!-- Efeitos de fundo -->
+<div class="absolute top-20 left-1/4 w-72 h-72 bg-blue-600/10 rounded-full blur-[130px] pointer-events-none"></div>
+<div class="absolute bottom-10 right-0 w-72 h-72 bg-cyan-500/10 rounded-full blur-[130px] pointer-events-none"></div>
+
+<div class="container-padrao relative z-10">
+
+  <!-- Cabeçalho -->
+  <div class="text-center max-w-2xl mx-auto mb-16">
+    <span class="inline-flex items-center gap-2 px-4 py-2 mb-5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium">
+      <i class="ri-terminal-box-line"></i>
+      O que posso desenvolver
+    </span>
+
+    <h3 class="text-4xl md:text-5xl font-bold text-white mb-5">
+      Meus <span class="text-blue-500">Serviços</span>
+    </h3>
+
+    <p class="text-gray-400 leading-relaxed">
+      Desenvolvimento de soluções digitais com foco em interfaces
+      intuitivas, organização, funcionalidade e experiência do usuário.
+    </p>
+  </div>
+
+  <!-- Cards de serviços -->
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+    <!-- Front-end -->
+    <article class="group relative h-full p-7 md:p-8 rounded-2xl bg-gray-800/60 border border-gray-700/70 hover:border-blue-500/60 transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+      <div class="relative z-10">
+        <div class="flex items-start justify-between mb-7">
+          <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
+            <i class="ri-code-s-slash-line text-3xl text-blue-400"></i>
+          </div>
+
+          <span class="text-xs text-gray-500 font-medium tracking-widest">
+            01
+          </span>
         </div>
-        <div class="manhwa-card p-6">
-          <i class="ri-server-line text-4xl text-blue-400 mb-4 block"></i>
-          <h4 class="text-xl font-bold mb-2">Back-End</h4>
-          <p class="text-gray-300"> PHP, Python, SQL, JavaScript</p>
+
+        <h4 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+          Desenvolvimento Front-end
+        </h4>
+
+        <p class="text-gray-400 leading-relaxed mb-6">
+          Criação de interfaces web organizadas, responsivas e visualmente
+          agradáveis, adaptadas a diferentes tamanhos de tela.
+        </p>
+
+        <div class="h-px bg-gray-700 mb-5"></div>
+
+        <p class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4">
+          Tecnologias
+        </p>
+
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs">HTML5</span>
+          <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs">CSS3</span>
+          <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs">Tailwind CSS</span>
+          <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs">JavaScript</span>
         </div>
-        <div class="manhwa-card p-6">
-          <i class="ri-brush-4-line text-4xl text-blue-400 mb-4 block"></i>
-          <h4 class="text-xl font-bold mb-2">UI/UX Design</h4>
-          <p class="text-gray-300">Noções de Prototipação, design moderno, intuitivo e interativo.</p>
+
+        <div class="mt-7 flex items-center gap-2 text-sm text-blue-400">
+          <i class="ri-layout-4-line"></i>
+          <span>Interfaces web responsivas</span>
         </div>
       </div>
-    </div>
-  </section>
+    </article>
 
+    <!-- Back-end -->
+    <article class="group relative h-full p-7 md:p-8 rounded-2xl bg-gray-800/60 border border-gray-700/70 hover:border-cyan-500/60 transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+
+      <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+      <div class="relative z-10">
+        <div class="flex items-start justify-between mb-7">
+          <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
+            <i class="ri-database-2-line text-3xl text-cyan-400"></i>
+          </div>
+
+          <span class="text-xs text-gray-500 font-medium tracking-widest">
+            02
+          </span>
+        </div>
+
+        <h4 class="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
+          Back-end & Banco de Dados
+        </h4>
+
+        <p class="text-gray-400 leading-relaxed mb-6">
+          Desenvolvimento de funcionalidades, processamento de informações
+          e integração com bancos de dados para sistemas web.
+        </p>
+
+        <div class="h-px bg-gray-700 mb-5"></div>
+
+        <p class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4">
+          Tecnologias
+        </p>
+
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs">PHP</span>
+          <span class="px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs">SQL</span>
+          <span class="px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs">MySQL</span>
+          <span class="px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs">Python</span>
+        </div>
+
+        <div class="mt-7 flex items-center gap-2 text-sm text-cyan-400">
+          <i class="ri-server-line"></i>
+          <span>Lógica e persistência de dados</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- UI/UX -->
+    <article class="group relative h-full p-7 md:p-8 rounded-2xl bg-gray-800/60 border border-gray-700/70 hover:border-indigo-500/60 transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+
+      <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+      <div class="relative z-10">
+        <div class="flex items-start justify-between mb-7">
+          <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors">
+            <i class="ri-palette-line text-3xl text-indigo-400"></i>
+          </div>
+
+          <span class="text-xs text-gray-500 font-medium tracking-widest">
+            03
+          </span>
+        </div>
+
+        <h4 class="text-2xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">
+          UI/UX Design
+        </h4>
+
+        <p class="text-gray-400 leading-relaxed mb-6">
+          Planejamento visual de interfaces com atenção à usabilidade,
+          hierarquia visual, navegação e experiência do usuário.
+        </p>
+
+        <div class="h-px bg-gray-700 mb-5"></div>
+
+        <p class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4">
+          Foco de trabalho
+        </p>
+
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs">Prototipação</span>
+          <span class="px-3 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs">Responsividade</span>
+          <span class="px-3 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs">Usabilidade</span>
+          <span class="px-3 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs">Design de interfaces</span>
+        </div>
+
+        <div class="mt-7 flex items-center gap-2 text-sm text-indigo-400">
+          <i class="ri-user-heart-line"></i>
+          <span>Experiência do usuário</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Chamada final -->
+  <div class="max-w-4xl mx-auto mt-14 p-6 md:p-8 rounded-2xl border border-blue-500/20 bg-gradient-to-r from-blue-500/10 via-gray-800/60 to-cyan-500/10 flex flex-col md:flex-row items-center justify-between gap-5">
+
+    <div class="text-center md:text-left">
+      <h4 class="text-xl font-bold text-white mb-2">
+        Tem uma ideia em mente?
+      </h4>
+
+      <p class="text-sm text-gray-400 leading-relaxed">
+        Vamos conversar sobre seu projeto e explorar possíveis soluções.
+      </p>
+    </div>
+
+    <a href="#contato"
+       class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 whitespace-nowrap">
+      <i class="ri-message-3-line"></i>
+      Entrar em contato
+      <i class="ri-arrow-right-line"></i>
+    </a>
+
+  </div>
+
+</div>
+</section>
+
+
+  <!-- ================================================== -->
+  <!-- SEÇÃO 6: CERTIFICAÇÕES E FORMAÇÃO                  -->
+  <!-- ================================================== -->
   <section id="certificacoes" class="min-h-screen px-4 py-24 bg-black/80" data-aos="fade-right">
     <div class="container-padrao">
       <div class="max-w-4xl mx-auto">
@@ -736,6 +1222,91 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
           <p class="text-gray-400 mt-4">Formação acadêmica e cursos profissionalizantes concluídos</p>
         </div>
         
+<!-- Início do card -->
+<div class="cert-card group">
+  <div class="flex flex-col md:flex-row gap-6 items-start">
+    <div class="relative">
+      <div class="cert-icon group-hover:scale-110 transition-transform duration-300">
+        <i class="ri-graduation-cap-line"></i>
+      </div>
+
+      <div class="absolute -top-1 -right-1 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs border-2 border-black">
+        <i class="ri-time-line"></i>
+      </div>
+    </div>
+
+    <div class="flex-1">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <h4 class="text-2xl font-bold text-white">
+          Tecnologia em Sistemas para Internet
+        </h4>
+
+        <span class="cert-badge">
+          <i class="ri-calendar-line"></i>
+          6 semestres
+        </span>
+
+        <span class="bg-blue-500/20 text-blue-400 text-xs px-3 py-1 rounded-full border border-blue-500/30 flex items-center gap-1">
+          <i class="ri-loader-4-line"></i>
+          Em andamento
+        </span>
+      </div>
+
+      <p class="text-blue-400 mb-2 flex items-center gap-2">
+        <i class="ri-building-line"></i>
+        Instituto Federal Sul-rio-grandense (IFSul) — Campus Pelotas
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 text-gray-400 text-sm">
+        <span class="flex items-center gap-1">
+          <i class="ri-calendar-line"></i>
+          Início: 2026/2
+        </span>
+
+        <span class="flex items-center gap-1">
+          <i class="ri-flag-line"></i>
+          Previsão: 2029/1
+        </span>
+
+        <span class="flex items-center gap-1">
+          <i class="ri-time-line"></i>
+          2.100 horas
+        </span>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="px-3 py-1 bg-blue-600/20 text-blue-400 rounded-full text-xs border border-blue-600/30">
+          Desenvolvimento Web e Mobile
+        </span>
+
+        <span class="px-3 py-1 bg-blue-600/20 text-blue-400 rounded-full text-xs border border-blue-600/30">
+          Banco de Dados
+        </span>
+
+        <span class="px-3 py-1 bg-blue-600/20 text-blue-400 rounded-full text-xs border border-blue-600/30">
+          Engenharia de Software
+        </span>
+
+        <span class="px-3 py-1 bg-blue-600/20 text-blue-400 rounded-full text-xs border border-blue-600/30">
+          Redes de Computadores
+        </span>
+      </div>
+
+      <div class="mt-4 flex items-center gap-2">
+        <div class="w-full h-12 bg-gradient-to-r from-blue-600/20 to-blue-600/5 rounded-lg border border-blue-500/30 flex items-center justify-center gap-2">
+          <i class="ri-book-open-line text-blue-400 text-xl"></i>
+          <span class="text-blue-400 font-semibold">
+            Graduação em andamento
+          </span>
+          <i class="ri-time-line text-blue-400"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><br>
+
+<!-- Fim do card -->
+
         <div class="space-y-6">
           
           <div class="cert-card group">
@@ -796,6 +1367,7 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
             </div>
           </div>
 
+    
           <div class="cert-card group">
   <div class="flex flex-col md:flex-row gap-6 items-start">
     
@@ -858,6 +1430,7 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
     </div>
   </div>
 </div>
+
           
           <div class="cert-card group">
             <div class="flex flex-col md:flex-row gap-6 items-start">
@@ -914,6 +1487,8 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
               </div>
             </div>
           </div>
+
+          
           
           <div class="cert-card border border-dashed border-gray-700 hover:border-blue-500/50 transition-all bg-opacity-50">
             <div class="flex items-center justify-center gap-4 py-4">
@@ -927,6 +1502,9 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
     </div>
   </section>
 
+  <!-- ================================================== -->
+  <!-- SEÇÃO 7: EVENTOS E PARTICIPAÇÕES                   -->
+  <!-- ================================================== -->
   <section id="eventos" class="min-h-screen px-4 py-24 bg-black/80" data-aos="fade-right">
     <div class="container-padrao">
       <div class="max-w-6xl mx-auto">
@@ -937,6 +1515,7 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           
+          <!-- Inicio do card-->
           <div class="manhwa-card p-6 relative overflow-hidden group">
             <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
                  style="background: radial-gradient(circle at 50% 50%, rgba(0,123,255,0.1), transparent 70%)">
@@ -974,7 +1553,198 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
                 </span>
               </div>
             </div>
-          </div>
+          </div> 
+          <!-- Fim do card-->
+         
+<!-- Início do card -->
+<div class="manhwa-card p-6 relative overflow-hidden group">
+  <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+       style="background: radial-gradient(circle at 50% 50%, rgba(0,123,255,0.1), transparent 70%)">
+  </div>
+
+  <div class="relative z-10">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-400 rounded-xl flex items-center justify-center shadow-lg">
+        <span class="text-white font-bold text-lg">IA</span>
+      </div>
+
+      <div>
+        <h4 class="text-xl font-bold text-white">Alura</h4>
+        <p class="text-sm text-blue-400">Imersão Front-end com IA</p>
+      </div>
+    </div>
+
+    <div class="space-y-3 mb-4">
+      <div class="flex items-center gap-2 text-gray-300">
+        <i class="ri-award-line text-blue-400 text-lg"></i>
+        <span>Certificado de participação</span>
+      </div>
+
+      <div class="flex items-center gap-2 text-gray-300">
+        <i class="ri-calendar-line text-blue-400 text-lg"></i>
+        <span>Concluído em 08 de abril de 2026</span>
+      </div>
+
+      <div class="flex items-center gap-2 text-gray-300">
+        <i class="ri-time-line text-blue-400 text-lg"></i>
+        <span>1 hora de carga horária estimada</span>
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <span class="bg-blue-600/20 text-blue-400 text-xs font-semibold px-3 py-1 rounded-full border border-blue-500/30">
+        <i class="ri-medal-line mr-1"></i>Participante
+      </span>
+    </div>
+  </div>
+</div>
+<!-- Fim do card -->
+
+
+<!-- Início do card -->
+<div class="manhwa-card p-6 relative overflow-hidden group">
+  <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+       style="background: radial-gradient(circle at 50% 50%, rgba(0,123,255,0.1), transparent 70%)">
+  </div>
+
+  <div class="relative z-10">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-400 rounded-xl flex items-center justify-center shadow-lg">
+        <i class="ri-restaurant-line text-white text-2xl"></i>
+      </div>
+
+      <div>
+        <h4 class="text-xl font-bold text-white">IFSul - CAVG</h4>
+        <p class="text-sm text-blue-400">Semana Acadêmica SASPI 2026</p>
+      </div>
+    </div>
+
+    <div class="space-y-3 mb-4">
+      <div class="flex items-start gap-2 text-gray-300">
+        <i class="ri-award-line text-blue-400 text-lg mt-0.5"></i>
+        <span>Participação em palestra</span>
+      </div>
+
+      <div class="flex items-start gap-2 text-gray-300">
+        <i class="ri-presentation-line text-blue-400 text-lg mt-0.5"></i>
+        <span>Alimentação saudável no home office</span>
+      </div>
+
+      <div class="flex items-start gap-2 text-gray-300">
+        <i class="ri-calendar-line text-blue-400 text-lg mt-0.5"></i>
+        <span>28 de setembro de 2026</span>
+      </div>
+
+      <div class="flex items-start gap-2 text-gray-300">
+        <i class="ri-time-line text-blue-400 text-lg mt-0.5"></i>
+        <span>1,5 horas de carga horária</span>
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <span class="bg-blue-600/20 text-blue-400 text-xs font-semibold px-3 py-1 rounded-full border border-blue-500/30">
+        <i class="ri-medal-line mr-1"></i>Participante
+      </span>
+    </div>
+  </div>
+</div>
+<!-- Fim do card -->
+
+
+<!-- Início do card -->
+<div class="manhwa-card p-6 relative overflow-hidden group">
+  <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+       style="background: radial-gradient(circle at 50% 50%, rgba(0,123,255,0.1), transparent 70%)">
+  </div>
+
+  <div class="relative z-10">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-400 rounded-xl flex items-center justify-center shadow-lg">
+        <i class="ri-brain-line text-white text-2xl"></i>
+      </div>
+
+      <div>
+        <h4 class="text-xl font-bold text-white">IFSul - CAVG</h4>
+        <p class="text-sm text-blue-400">Semana Acadêmica SASPI 2026</p>
+      </div>
+    </div>
+
+    <div class="space-y-3 mb-4">
+      <div class="flex items-start gap-2 text-gray-300">
+        <i class="ri-award-line text-blue-400 text-lg mt-0.5"></i>
+        <span>Certificado de participação</span>
+      </div>
+
+      <div class="flex items-start gap-2 text-gray-300">
+        <i class="ri-global-line text-blue-400 text-lg mt-0.5"></i>
+        <span>Conectados, mas como estamos por dentro? Os impactos da internet na nossa saúde mental</span>
+      </div>
+
+      <div class="flex items-start gap-2 text-gray-300">
+        <i class="ri-calendar-line text-blue-400 text-lg mt-0.5"></i>
+        <span>28 de setembro de 2026</span>
+      </div>
+
+      <div class="flex items-start gap-2 text-gray-300">
+        <i class="ri-time-line text-blue-400 text-lg mt-0.5"></i>
+        <span>1,5 horas de carga horária</span>
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <span class="bg-blue-600/20 text-blue-400 text-xs font-semibold px-3 py-1 rounded-full border border-blue-500/30">
+        <i class="ri-medal-line mr-1"></i>Participante
+      </span>
+    </div>
+  </div>
+</div>
+<!-- Fim do card -->
+
+
+<!-- Início do card -->
+<div class="manhwa-card p-6 relative overflow-hidden group">
+  <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+       style="background: radial-gradient(circle at 50% 50%, rgba(0,123,255,0.1), transparent 70%)">
+  </div>
+
+  <div class="relative z-10">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-400 rounded-xl flex items-center justify-center shadow-lg">
+        <span class="text-white font-bold text-lg">IA</span>
+      </div>
+
+      <div>
+        <h4 class="text-xl font-bold text-white">Alura</h4>
+        <p class="text-sm text-blue-400">Imersão Front-end com IA</p>
+      </div>
+    </div>
+
+    <div class="space-y-3 mb-4">
+      <div class="flex items-start gap-2 text-gray-300">
+        <i class="ri-award-line text-blue-400 text-lg mt-0.5"></i>
+        <span>Certificado de participação</span>
+      </div>
+
+      <div class="flex items-start gap-2 text-gray-300">
+        <i class="ri-calendar-line text-blue-400 text-lg mt-0.5"></i>
+        <span>Concluído em 06 de abril de 2026</span>
+      </div>
+
+      <div class="flex items-start gap-2 text-gray-300">
+        <i class="ri-time-line text-blue-400 text-lg mt-0.5"></i>
+        <span>1 hora de carga horária estimada</span>
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <span class="bg-blue-600/20 text-blue-400 text-xs font-semibold px-3 py-1 rounded-full border border-blue-500/30">
+        <i class="ri-medal-line mr-1"></i>Participante
+      </span>
+    </div>
+  </div>
+</div>
+<!-- Fim do card -->
+
           
           <div class="manhwa-card p-6 relative overflow-hidden group flex items-center justify-center min-h-[250px] border border-dashed border-gray-700 hover:border-blue-500/50 transition-all">
             <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
@@ -1002,6 +1772,9 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
     </div>
   </section>
 
+  <!-- ================================================== -->
+  <!-- SEÇÃO 8: CONTATO                                   -->
+  <!-- ================================================== -->
   <section id="contato" class="min-h-screen px-4 py-24 bg-black/80" data-aos="fade-left">
     <div class="container-padrao">
       <div class="max-w-3xl mx-auto text-center">
@@ -1016,14 +1789,22 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
     </div>
   </section>
 
+  <!-- ================================================== -->
+  <!-- RODAPÉ                                             -->
+  <!-- ================================================== -->
   <footer class="py-8 text-center text-gray-500">
     © 2026 | Desenvolvido por Thiago Pucinelli
   </footer>
 
+  <!-- ================================================== -->
+  <!-- JAVASCRIPT: ANIMAÇÕES, MENU E FUNDO INTERATIVO     -->
+  <!-- ================================================== -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+    // Inicializa as animações de entrada das seções (AOS)
     AOS.init({ duration: 1000, once: true });
 
+    // Menu de navegação para dispositivos móveis
     const menuBtn = document.getElementById("menuBtn");
     const mobileNav = document.getElementById("mobileNav");
     
@@ -1035,6 +1816,7 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
       mobileNav.classList.add("hidden"); 
     }
 
+    // Anima as barras de habilidades quando entram na tela
     function animateSkills() {
       const skills = document.querySelectorAll('.skill-progress');
       
@@ -1057,6 +1839,7 @@ Tenho paixão por tecnologia, curiosidade para entender como as coisas funcionam
 
     animateSkills();
 
+    // Fundo com partículas e conexões animadas
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
     let particlesArray;
